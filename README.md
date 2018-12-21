@@ -9,4 +9,8 @@
 - CRUD berhasil diimplementasikan
 
 - Icon edit dan hapus diubah
+
+- api included
+
+- Login page must receive username : admin, password : admin
 #
