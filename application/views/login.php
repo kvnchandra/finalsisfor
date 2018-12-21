@@ -33,14 +33,18 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST" action="<?php echo site_url().'/Admin/loginAction'?>">
+                <form id="sign_in" method="POST" action="<?php
+                if($this->input->post('username') == 'admin' and $this->input->post('password') == 'admin'){
+                    echo site_url().'/Admin/loginAction';
+                }
+                ?>">
                     <div class="msg">Sign in to start your session</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Username">
+                            <input name="username" type="text" class="form-control" name="username" placeholder="Username">
                         </div>
                     </div>
                     <div class="input-group">
@@ -48,7 +52,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Password">
+                            <input name="password" type="password" class="form-control" name="password" placeholder="Password">
                         </div>
                     </div>
                     <div class="row">
