@@ -2,7 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
-	public function index() {
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('company');
+    }
+
+    public function index() {
 		$this->load->view('admin/index');
 	}
 	public function login() {
@@ -18,10 +25,17 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/customerForm');	
 	}
 	public function company() {
-		$this->load->view('admin/company');
+	    $data['company'] = $this->company->get_company();
+		$this->load->view('admin/company',$data);
 	}
-	public function companyTambah(){
-		$this->load->view('admin/companyForm');	
+	public function companyTambah($id = false){
+        if($id){
+            $data['company'] = $this->company->get_company($id);
+            $this->load->view('admin/companyForm', $data);
+        }else{
+            $data['company'] = false;
+            $this->load->view('admin/companyForm', $data);
+        }
 	}
 	public function library() {
 		$this->load->view('admin/library');
@@ -38,4 +52,19 @@ class Admin extends CI_Controller {
 	public function post(){
 		$this->load->view('admin/posts');	
 	}
+
+	public function submit($id = false){
+        if($id){
+            $this->company->update_company($id);
+            $this->company();
+        }else{
+            $this->company->set_company();
+            $this->company();
+        }
+    }
+
+    public function companyHapus($id){
+        $this->company->delete_company($id);
+        $this->company();
+    }
 }

@@ -14,16 +14,16 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/plugins//bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-    <link href="/node-waves/waves.css" rel="stylesheet" />
+    <link href="<?php echo base_url() ?>assets/plugins//node-waves/waves.css" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="/animate-css/animate.css" rel="stylesheet" />
+    <link href="<?php echo base_url() ?>assets/plugins//animate-css/animate.css" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
-    <link href="/morrisjs/morris.css" rel="stylesheet" />
+    <link href="<?php echo base_url() ?>assets/plugins//morrisjs/morris.css" rel="stylesheet" />
 
     <!-- Custom Css -->
     <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet">
@@ -187,21 +187,55 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <form>
-                                <label for="email_address">Email Address</label>
+                            <form action="<?php
+                            if($company){
+                                echo site_url('admin/submit/'.$company[0]['id']);
+                            }else{
+                                echo site_url('admin/submit');
+                            }
+                             ?>" method="post">
+                                <label for="email_address">Nama Perusahaan</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="email_address" class="form-control" placeholder="Enter your email address">
+                                        <input name="nama" type="text" id="email_address" class="form-control" placeholder="Enter your company name" value="<?php
+                                        if($company){
+                                            echo $company[0]['nama'];
+                                        }
+                                        ?>">
                                     </div>
                                 </div>
-                                <label for="password">Username</label>
+                                <label for="password">Nomor Telepon Perusahaan</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="email_address" class="form-control" placeholder="Enter your email address">
+                                        <input name="no_telepon" type="text" id="email_address" class="form-control" placeholder="Enter your company phone number" value="<?php
+                                        if($company){
+                                            echo $company[0]['no_telepon'];
+                                        }
+                                        ?>">
+                                    </div>
+                                </div>
+                                <label for="password">Email Perusahaan</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input name="email" type="text" id="email_address" class="form-control" placeholder="Enter your company email" value="<?php
+                                        if($company){
+                                            echo $company[0]['email'];
+                                        }
+                                        ?>">
+                                    </div>
+                                </div>
+                                <label for="password">Alamat Perusahaan</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input name="alamat" type="text" id="email_address" class="form-control" placeholder="Enter your company address" value="<?php
+                                        if($company){
+                                            echo $company[0]['alamat'];
+                                        }
+                                        ?>">
                                     </div>
                                 </div>
                                 <br>
-                                <button type="button" class="btn btn-primary m-t-15 waves-effect">LOGIN</button>
+                                <input type="submit" class="btn btn-primary m-t-15 waves-effect">
                             </form>
                         </div>
                     </div>
